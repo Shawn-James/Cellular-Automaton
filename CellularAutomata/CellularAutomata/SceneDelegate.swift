@@ -1,10 +1,5 @@
-//
-//  SceneDelegate.swift
-//  CellularAutomata
-//
-//  Created by Shawn James on 7/21/20.
 //  Copyright © 2020 Shawn James. All rights reserved.
-//
+//  SceneDelegate.swift
 
 import UIKit
 
