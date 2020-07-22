@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D10F0E924C8BA1B00270AB2 /* Thin Pencil Handwriting.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D10F0E824C8B9EF00270AB2 /* Thin Pencil Handwriting.ttf */; };
 		1D938CA124C7D16100139E0E /* UIView+LivePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D938CA024C7D16100139E0E /* UIView+LivePreview.swift */; };
 		1DA7403D24C79B7E0062058B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA7403C24C79B7E0062058B /* AppDelegate.swift */; };
 		1DA7403F24C79B7E0062058B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA7403E24C79B7E0062058B /* SceneDelegate.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D10F0E824C8B9EF00270AB2 /* Thin Pencil Handwriting.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Thin Pencil Handwriting.ttf"; sourceTree = "<group>"; };
 		1D938CA024C7D16100139E0E /* UIView+LivePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LivePreview.swift"; sourceTree = "<group>"; };
 		1DA7403924C79B7E0062058B /* CellularAutomata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CellularAutomata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DA7403C24C79B7E0062058B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				1DA7403E24C79B7E0062058B /* SceneDelegate.swift */,
 				1DA7404724C79B820062058B /* LaunchScreen.storyboard */,
 				1DA7404524C79B820062058B /* Assets.xcassets */,
+				1D10F0E824C8B9EF00270AB2 /* Thin Pencil Handwriting.ttf */,
 				1DA7404A24C79B820062058B /* Info.plist */,
 			);
 			name = Application;
@@ -165,6 +168,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D10F0E924C8BA1B00270AB2 /* Thin Pencil Handwriting.ttf in Resources */,
 				1DA7404924C79B820062058B /* LaunchScreen.storyboard in Resources */,
 				1DA7404624C79B820062058B /* Assets.xcassets in Resources */,
 			);
