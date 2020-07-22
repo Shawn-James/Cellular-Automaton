@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D938CA124C7D16100139E0E /* UIView+LivePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D938CA024C7D16100139E0E /* UIView+LivePreview.swift */; };
 		1DA7403D24C79B7E0062058B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA7403C24C79B7E0062058B /* AppDelegate.swift */; };
 		1DA7403F24C79B7E0062058B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA7403E24C79B7E0062058B /* SceneDelegate.swift */; };
 		1DA7404624C79B820062058B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DA7404524C79B820062058B /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D938CA024C7D16100139E0E /* UIView+LivePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LivePreview.swift"; sourceTree = "<group>"; };
 		1DA7403924C79B7E0062058B /* CellularAutomata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CellularAutomata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DA7403C24C79B7E0062058B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DA7403E24C79B7E0062058B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +37,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D938C9F24C7CF8E00139E0E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1D938CA024C7D16100139E0E /* UIView+LivePreview.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		1DA7403024C79B7E0062058B = {
 			isa = PBXGroup;
 			children = (
@@ -57,6 +67,7 @@
 				1DA7405424C79E5E0062058B /* Model */,
 				1DA7405324C79E510062058B /* View */,
 				1DA7405224C79E410062058B /* Controller */,
+				1D938C9F24C7CF8E00139E0E /* Extension */,
 				1DA7405024C79BA90062058B /* Application */,
 			);
 			path = CellularAutomata;
@@ -167,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DA7403D24C79B7E0062058B /* AppDelegate.swift in Sources */,
+				1D938CA124C7D16100139E0E /* UIView+LivePreview.swift in Sources */,
 				1DA7403F24C79B7E0062058B /* SceneDelegate.swift in Sources */,
 				1DA7405824C7B01A0062058B /* SimulatorController.swift in Sources */,
 			);
