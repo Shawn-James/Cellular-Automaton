@@ -54,9 +54,9 @@
 		1DA7403B24C79B7E0062058B /* CellularAutomata */ = {
 			isa = PBXGroup;
 			children = (
-				1DA7405424C79E5E0062058B /* Models */,
-				1DA7405324C79E510062058B /* Views */,
-				1DA7405224C79E410062058B /* Controllers */,
+				1DA7405424C79E5E0062058B /* Model */,
+				1DA7405324C79E510062058B /* View */,
+				1DA7405224C79E410062058B /* Controller */,
 				1DA7405024C79BA90062058B /* Application */,
 			);
 			path = CellularAutomata;
@@ -74,26 +74,26 @@
 			name = Application;
 			sourceTree = "<group>";
 		};
-		1DA7405224C79E410062058B /* Controllers */ = {
+		1DA7405224C79E410062058B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				1DA7405724C7B01A0062058B /* SimulatorController.swift */,
 			);
-			path = Controllers;
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		1DA7405324C79E510062058B /* Views */ = {
+		1DA7405324C79E510062058B /* View */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
-		1DA7405424C79E5E0062058B /* Models */ = {
+		1DA7405424C79E5E0062058B /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
