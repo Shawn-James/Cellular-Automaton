@@ -10,7 +10,9 @@ extension UIView {
     struct LivePreview<V: UIView>: UIViewRepresentable {
         let view: V
         
-        func makeUIView(context: UIViewRepresentableContext<LivePreview<V>>) -> V { return view }
+        func makeUIView(context: UIViewRepresentableContext<LivePreview<V>>) -> V {
+            return view
+        }
         
         func updateUIView(_ uiView: V, context: Context) { }
     }
