@@ -3,11 +3,30 @@
 
 import UIKit
 
+private let segueIdentifier = "OpenFolder"
+
 class SimulatorController: UIViewController {
     // MARK: - Properties
     
     lazy var resetButton: UIButton = createButton(withTitle: "Reset.")
     lazy var goButton: UIButton = createButton(withTitle: "Go!")
+    
+    lazy var folderBarButton: UIBarButtonItem = {
+        let barButton = UIBarButtonItem(
+            image: UIImage(systemName: "folder.fill"),
+            style: .plain, target: self,
+            action: #selector(handleFolderButtonPress))
+        return barButton
+    }()
+    
+    lazy var backBarButton: UIBarButtonItem = { // this is declared on this controller but actually used on the folder controller
+        let barButton = UIBarButtonItem(
+            title: "",
+            style: .plain,
+            target: nil,
+            action: nil)
+        return barButton
+    }()
     
     let hStackViewTop: UIStackView = {
         let stackView = UIStackView()
@@ -23,13 +42,14 @@ class SimulatorController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // navigation bar
+        // nav bar
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        // gear bar button
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "folder.fill"), style: .plain, target: self, action: #selector(handleFolderButtonPress)) // why does the target not work if I add this as property at the top of this page?
-        navigationItem.rightBarButtonItem?.tintColor = .darkGray
+        navigationController?.navigationBar.tintColor = .darkGray
+        // nav bar buttons
+        navigationItem.backBarButtonItem = backBarButton
+        navigationItem.rightBarButtonItem = folderBarButton
         // view
         view.backgroundColor = .white
         view.alpha = 0
@@ -65,13 +85,15 @@ class SimulatorController: UIViewController {
             print("Perform reset.")
         case "Go!":
             print("Start the simulation.")
-        default:
-            fatalError("Error: Default case was hit in handleButtonPress. It should never do that.")
+        default: break
         }
     }
     
     @objc private func handleFolderButtonPress() {
         print("Open Folder.")
+        
+        let folderController = FolderController(nibName: nil, bundle: nil)
+        navigationController?.pushViewController(folderController, animated: true)
     }
     
     // MARK: - Helper Methods
