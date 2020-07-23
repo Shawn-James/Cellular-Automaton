@@ -1,11 +1,11 @@
 //  Copyright © 2020 Shawn James. All rights reserved.
-//  SimulatorController.swift
+//  SimulationController.swift
 
 import UIKit
 
 private let segueIdentifier = "OpenFolder"
 
-class SimulatorController: UIViewController {
+class SimulationController: UIViewController {
     // MARK: - Properties
     
     lazy var resetButton: UIButton = createButton(withTitle: "Reset.")
@@ -121,9 +121,9 @@ class SimulatorController: UIViewController {
 #if DEBUG
 import SwiftUI
 
-struct SimulatorControllerLivePreview: PreviewProvider {
+struct SimulationControllerPreviews: PreviewProvider {
     static var previews: some View {
-        let viewController = SimulatorController()
+        let viewController = SimulationController()
         
         return viewController.view.livePreview.edgesIgnoringSafeArea(.all)
     }

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1D10F0E924C8BA1B00270AB2 /* Thin Pencil Handwriting.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D10F0E824C8B9EF00270AB2 /* Thin Pencil Handwriting.ttf */; };
 		1D938CA124C7D16100139E0E /* UIView+LivePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D938CA024C7D16100139E0E /* UIView+LivePreview.swift */; };
+		1DA4260724C9F07E00AB1A23 /* SimulationGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA4260624C9F07E00AB1A23 /* SimulationGrid.swift */; };
+		1DA4260924C9F81400AB1A23 /* SimulationGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA4260824C9F81400AB1A23 /* SimulationGridCell.swift */; };
 		1DA42DD924C9262D00651D45 /* FolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA42DD824C9262D00651D45 /* FolderController.swift */; };
 		1DA42DDB24C92A0400651D45 /* FolderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA42DDA24C92A0400651D45 /* FolderTableViewCell.swift */; };
 		1DA42DDD24C92B3A00651D45 /* FolderTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA42DDC24C92B3A00651D45 /* FolderTableViewHeader.swift */; };
@@ -17,12 +19,14 @@
 		1DA7403F24C79B7E0062058B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA7403E24C79B7E0062058B /* SceneDelegate.swift */; };
 		1DA7404624C79B820062058B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DA7404524C79B820062058B /* Assets.xcassets */; };
 		1DA7404924C79B820062058B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DA7404724C79B820062058B /* LaunchScreen.storyboard */; };
-		1DA7405824C7B01A0062058B /* SimulatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA7405724C7B01A0062058B /* SimulatorController.swift */; };
+		1DA7405824C7B01A0062058B /* SimulationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA7405724C7B01A0062058B /* SimulationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D10F0E824C8B9EF00270AB2 /* Thin Pencil Handwriting.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Thin Pencil Handwriting.ttf"; sourceTree = "<group>"; };
 		1D938CA024C7D16100139E0E /* UIView+LivePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LivePreview.swift"; sourceTree = "<group>"; };
+		1DA4260624C9F07E00AB1A23 /* SimulationGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationGrid.swift; sourceTree = "<group>"; };
+		1DA4260824C9F81400AB1A23 /* SimulationGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationGridCell.swift; sourceTree = "<group>"; };
 		1DA42DD824C9262D00651D45 /* FolderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderController.swift; sourceTree = "<group>"; };
 		1DA42DDA24C92A0400651D45 /* FolderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderTableViewCell.swift; sourceTree = "<group>"; };
 		1DA42DDC24C92B3A00651D45 /* FolderTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderTableViewHeader.swift; sourceTree = "<group>"; };
@@ -33,7 +37,7 @@
 		1DA7404524C79B820062058B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DA7404824C79B820062058B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DA7404A24C79B820062058B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1DA7405724C7B01A0062058B /* SimulatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorController.swift; sourceTree = "<group>"; };
+		1DA7405724C7B01A0062058B /* SimulationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +71,8 @@
 		1DA42DE124C9DF2500651D45 /* Simulator */ = {
 			isa = PBXGroup;
 			children = (
-				1DA7405724C7B01A0062058B /* SimulatorController.swift */,
-				1DA750D124C9E84D002E080D /* Simulator */,
+				1DA7405724C7B01A0062058B /* SimulationController.swift */,
+				1DA750D124C9E84D002E080D /* Grid */,
 			);
 			path = Simulator;
 			sourceTree = "<group>";
@@ -123,11 +127,13 @@
 			name = Application;
 			sourceTree = "<group>";
 		};
-		1DA750D124C9E84D002E080D /* Simulator */ = {
+		1DA750D124C9E84D002E080D /* Grid */ = {
 			isa = PBXGroup;
 			children = (
+				1DA4260624C9F07E00AB1A23 /* SimulationGrid.swift */,
+				1DA4260824C9F81400AB1A23 /* SimulationGridCell.swift */,
 			);
-			path = Simulator;
+			path = Grid;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,14 +207,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DA4260924C9F81400AB1A23 /* SimulationGridCell.swift in Sources */,
 				1DA7403D24C79B7E0062058B /* AppDelegate.swift in Sources */,
 				1DA42DDD24C92B3A00651D45 /* FolderTableViewHeader.swift in Sources */,
 				1D938CA124C7D16100139E0E /* UIView+LivePreview.swift in Sources */,
 				1DA42DDF24C9384600651D45 /* FolderSections.swift in Sources */,
 				1DA42DDB24C92A0400651D45 /* FolderTableViewCell.swift in Sources */,
 				1DA7403F24C79B7E0062058B /* SceneDelegate.swift in Sources */,
-				1DA7405824C7B01A0062058B /* SimulatorController.swift in Sources */,
+				1DA7405824C7B01A0062058B /* SimulationController.swift in Sources */,
 				1DA42DD924C9262D00651D45 /* FolderController.swift in Sources */,
+				1DA4260724C9F07E00AB1A23 /* SimulationGrid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
