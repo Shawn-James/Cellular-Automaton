@@ -4,7 +4,6 @@
 import UIKit
 
 class FolderTableViewHeader: UIView {
-    
     // MARK: - Properties
     
     let conwayImageView: UIImageView = {
@@ -60,3 +59,18 @@ class FolderTableViewHeader: UIView {
     }
     
 }
+
+// MARK: - Live Previews
+
+#if DEBUG
+import SwiftUI
+
+struct FolderTableViewHeaderViewPreviews: PreviewProvider {
+    static var previews: some View {
+        let view = FolderTableViewHeader()
+        
+        return view.livePreview
+    }
+}
+
+#endif

@@ -4,5 +4,7 @@
 import UIKit
 
 class SimulationGridCell: UICollectionViewCell {
+    // MARK: - Properties
+    var isAlive = true
     
 }

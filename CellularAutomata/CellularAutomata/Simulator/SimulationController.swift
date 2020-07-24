@@ -8,6 +8,7 @@ private let segueIdentifier = "OpenFolder"
 class SimulationController: UIViewController {
     // MARK: - Properties
     
+    let grid = SimulationGrid()
     lazy var resetButton: UIButton = createButton(withTitle: "Reset.")
     lazy var goButton: UIButton = createButton(withTitle: "Go!")
     
@@ -56,6 +57,12 @@ class SimulationController: UIViewController {
         UIView.animate(withDuration: 2) {
             self.view.alpha = 1
         }
+        // grid
+        view.addSubview(grid)
+        grid.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        grid.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        grid.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        grid.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         // hStackView (Top)
         view.addSubview(hStackViewTop)
         hStackViewTop.heightAnchor.constraint(equalToConstant: 32).isActive = true
