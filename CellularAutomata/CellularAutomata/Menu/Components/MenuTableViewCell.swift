@@ -1,9 +1,9 @@
 // Copyright © 2020 Shawn James. All rights reserved.
-// FolderTableViewCell.swift
+// MenuTableViewCell.swift
 
 import UIKit
 
-class FolderTableViewCell: UITableViewCell {
+class MenuTableViewCell: UITableViewCell {
     // MARK: - Properties
     
     var sectionType: SectionType? {
@@ -17,7 +17,7 @@ class FolderTableViewCell: UITableViewCell {
     lazy var switchControl: UISwitch = {
         let switchControl = UISwitch()
         switchControl.isOn = true
-        switchControl.onTintColor = .darkGray
+        switchControl.onTintColor = .red
         switchControl.translatesAutoresizingMaskIntoConstraints = false
         switchControl.addTarget(self, action: #selector(handleSwitchToggle), for: .valueChanged)
         return switchControl

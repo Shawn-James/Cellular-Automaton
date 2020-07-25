@@ -1,26 +1,26 @@
 // Copyright © 2020 Shawn James. All rights reserved.
-// FolderController.swift
+// MenuController.swift
 
 import UIKit
 
-private let reuseIdentifier = "FolderTableViewCell"
+private let reuseIdentifier = "MenuTableViewCell"
 
-class FolderController: UIViewController {
+class MenuController: UIViewController {
     // MARK: - Properties
 
-    lazy var folderTableView: UITableView = {
+    lazy var menuTableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 60
-        tableView.register(FolderTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.frame = view.frame
         return tableView
     }()
     
-    lazy var conwayHeader: FolderTableViewHeader = {
+    lazy var conwayHeader: MenuHeader = {
         let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 100)
-        return FolderTableViewHeader(frame: frame)
+        return MenuHeader(frame: frame)
     }()
     
     // MARK: - Lifecycle
@@ -28,11 +28,11 @@ class FolderController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // navigation bar
-        navigationItem.title = "Presets"
+        navigationItem.title = "Menu"
         // settings table view
-        view.addSubview(folderTableView)
-        folderTableView.tableHeaderView = conwayHeader
-        folderTableView.tableFooterView = UIView() // this just eliminates all the extra lines for the empty cells
+        view.addSubview(menuTableView)
+        menuTableView.tableHeaderView = conwayHeader
+        menuTableView.tableFooterView = UIView() // this just eliminates all the extra lines for the empty cells
     }
     
     // MARK: - Handlers
@@ -43,9 +43,9 @@ class FolderController: UIViewController {
 
 // MARK: - Table View
 
-extension FolderController: UITableViewDelegate, UITableViewDataSource {
+extension MenuController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return FolderSections.allCases.count
+        return MenuSections.allCases.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -54,12 +54,12 @@ extension FolderController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
-        view.backgroundColor = .darkGray
+        view.backgroundColor = .red
         
         let title = UILabel()
         title.font = UIFont.boldSystemFont(ofSize: 16)
         title.textColor = .white
-        title.text = FolderSections(rawValue: section)?.description
+        title.text = MenuSections(rawValue: section)?.description
         view.addSubview(title)
         title.translatesAutoresizingMaskIntoConstraints = false
         title.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -69,7 +69,7 @@ extension FolderController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let section = FolderSections(rawValue: section) else { return 0 }
+        guard let section = MenuSections(rawValue: section) else { return 0 }
         switch section {
         case .presets: return PresetOptions.allCases.count
         case .settings: return SettingsOptions.allCases.count
@@ -77,8 +77,8 @@ extension FolderController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = folderTableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! FolderTableViewCell
-        guard let section = FolderSections(rawValue: indexPath.section) else { return UITableViewCell() }
+        let cell = menuTableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MenuTableViewCell
+        guard let section = MenuSections(rawValue: indexPath.section) else { return UITableViewCell() }
         
         switch section {
         case .presets:
@@ -93,7 +93,7 @@ extension FolderController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let section = FolderSections(rawValue: indexPath.section) else { return }
+        guard let section = MenuSections(rawValue: indexPath.section) else { return }
         
         switch section {
         case .presets:
@@ -110,9 +110,9 @@ extension FolderController: UITableViewDelegate, UITableViewDataSource {
 #if DEBUG
 import SwiftUI
 
-struct FolderControllerPreview: PreviewProvider {
+struct MenuControllerPreviews: PreviewProvider {
     static var previews: some View {
-        let viewController = FolderController()
+        let viewController = MenuController()
         
         return viewController.view.livePreview.edgesIgnoringSafeArea(.all)
     }

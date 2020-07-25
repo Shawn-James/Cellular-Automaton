@@ -1,26 +1,26 @@
 //  Copyright © 2020 Shawn James. All rights reserved.
-//  SimulationController.swift
+//  RenderingEngineController.swift
 
 import UIKit
 
-private let segueIdentifier = "OpenFolder"
+private let segueIdentifier = "OpenMenuController"
 
-class SimulationController: UIViewController {
+class RenderingEngineController: UIViewController {
     // MARK: - Properties
+        
+    let grid = GridView()
+    lazy var resetButton: UIButton = createNewButton(withTitle: "Reset.")
+    lazy var goButton: UIButton = createNewButton(withTitle: "Go!")
     
-    let grid = SimulationGrid()
-    lazy var resetButton: UIButton = createButton(withTitle: "Reset.")
-    lazy var goButton: UIButton = createButton(withTitle: "Go!")
-    
-    lazy var folderBarButton: UIBarButtonItem = {
+    lazy var menuBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(
-            image: UIImage(systemName: "folder.fill"),
-            style: .plain, target: self,
-            action: #selector(handleFolderButtonPress))
+            image: UIImage(systemName: "arrowshape.turn.up.right"),
+            style: .plain,
+            target: self, action: #selector(handleMenuButtonPress))
         return barButton
     }()
     
-    lazy var backBarButton: UIBarButtonItem = { // this is declared on this controller but actually used on the folder controller
+    lazy var backBarButton: UIBarButtonItem = { // this is declared on this controller but actually used on MenuController
         let barButton = UIBarButtonItem(
             title: "",
             style: .plain,
@@ -47,10 +47,13 @@ class SimulationController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.tintColor = .darkGray
+        navigationController?.navigationBar.tintColor = .red
         // nav bar buttons
+        navigationItem.rightBarButtonItem = menuBarButton
         navigationItem.backBarButtonItem = backBarButton
-        navigationItem.rightBarButtonItem = folderBarButton
+        let customBackButtonImage = UIImage(systemName: "arrowshape.turn.up.left")
+        navigationController?.navigationBar.backIndicatorImage = customBackButtonImage
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = customBackButtonImage
         // view
         view.backgroundColor = .white
         view.alpha = 0
@@ -96,16 +99,14 @@ class SimulationController: UIViewController {
         }
     }
     
-    @objc private func handleFolderButtonPress() {
-        print("Open Folder.")
-        
-        let folderController = FolderController(nibName: nil, bundle: nil)
-        navigationController?.pushViewController(folderController, animated: true)
+    @objc private func handleMenuButtonPress() {
+        let menuController = MenuController()
+        navigationController?.pushViewController(menuController, animated: true)
     }
     
     // MARK: - Helper Methods
     
-    private func createButton(withTitle inputTitle: String) -> UIButton {
+    private func createNewButton(withTitle inputTitle: String) -> UIButton {
         let button = UIButton()
         button.backgroundColor = UIColor(patternImage: UIImage(named: "GraphingPaper")!)
         button.setTitleColor(.black, for: .normal)
@@ -128,9 +129,9 @@ class SimulationController: UIViewController {
 #if DEBUG
 import SwiftUI
 
-struct SimulationControllerPreviews: PreviewProvider {
+struct RenderingEngineControllerPreviews: PreviewProvider {
     static var previews: some View {
-        let viewController = SimulationController()
+        let viewController = RenderingEngineController()
         
         return viewController.view.livePreview.edgesIgnoringSafeArea(.all)
     }

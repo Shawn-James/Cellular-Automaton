@@ -1,11 +1,11 @@
 // Copyright © 2020 Shawn James. All rights reserved.
-// FolderSections.swift
+// MenuSections.swift
 
 protocol SectionType: CustomStringConvertible {
     var containsSwitch: Bool { get }
 }
 
-enum FolderSections: Int, CaseIterable, CustomStringConvertible {
+enum MenuSections: Int, CaseIterable, CustomStringConvertible {
     case presets
     case settings
     

@@ -1,9 +1,9 @@
 // Copyright © 2020 Shawn James. All rights reserved.
-// FolderTableViewHeader.swift
+// MenuHeader.swift
 
 import UIKit
 
-class FolderTableViewHeader: UIView {
+class MenuHeader: UIView {
     // MARK: - Properties
     
     let conwayImageView: UIImageView = {
@@ -37,18 +37,18 @@ class FolderTableViewHeader: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         let profileImageDimension: CGFloat = 60
-        // profile image view
+        // Conway image view
         addSubview(conwayImageView)
         conwayImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         conwayImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
         conwayImageView.widthAnchor.constraint(equalToConstant: profileImageDimension).isActive = true
         conwayImageView.heightAnchor.constraint(equalToConstant: profileImageDimension).isActive = true
         conwayImageView.layer.cornerRadius = profileImageDimension / 2
-        // username label
+        // Conway name label
         addSubview(conwayNameLabel)
         conwayNameLabel.centerYAnchor.constraint(equalTo: conwayImageView.centerYAnchor, constant: -10).isActive = true
         conwayNameLabel.leftAnchor.constraint(equalTo: conwayImageView.rightAnchor, constant: 12).isActive = true
-        // email label
+        // Subtitle label
         addSubview(subtitleLabel)
         subtitleLabel.centerYAnchor.constraint(equalTo: conwayImageView.centerYAnchor, constant: 10).isActive = true
         subtitleLabel.leftAnchor.constraint(equalTo: conwayImageView.rightAnchor, constant: 12).isActive = true
@@ -65,9 +65,9 @@ class FolderTableViewHeader: UIView {
 #if DEBUG
 import SwiftUI
 
-struct FolderTableViewHeaderViewPreviews: PreviewProvider {
+struct MenuHeaderViewPreviews: PreviewProvider {
     static var previews: some View {
-        let view = FolderTableViewHeader()
+        let view = MenuHeader()
         
         return view.livePreview
     }
