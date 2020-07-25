@@ -112,6 +112,8 @@ class RenderingEngineController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         button.setTitle(inputTitle, for: .normal)
         button.titleLabel?.font = UIFont(name: "Thin Pencil Handwriting", size: 18)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.shadowColor = UIColor(red: 0.64, green: 0.71, blue: 0.78, alpha: 1.00).cgColor
         button.layer.shadowOffset = CGSize(width: 10, height: 10)
         button.layer.shadowRadius = 10
