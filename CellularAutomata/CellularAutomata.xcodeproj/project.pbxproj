@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D10F0E924C8BA1B00270AB2 /* Thin Pencil Handwriting.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D10F0E824C8B9EF00270AB2 /* Thin Pencil Handwriting.ttf */; };
 		1D89E6E024CBA77500E8B842 /* RenderingEngineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D89E6DF24CBA77500E8B842 /* RenderingEngineController.swift */; };
+		1D89E6E224CBC57500E8B842 /* UINavigationBar+TouchRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D89E6E124CBC57500E8B842 /* UINavigationBar+TouchRecognizer.swift */; };
 		1D938CA124C7D16100139E0E /* UIView+LivePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D938CA024C7D16100139E0E /* UIView+LivePreview.swift */; };
 		1DA4260724C9F07E00AB1A23 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA4260624C9F07E00AB1A23 /* GridView.swift */; };
 		1DA42DD924C9262D00651D45 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA42DD824C9262D00651D45 /* MenuController.swift */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		1D10F0E824C8B9EF00270AB2 /* Thin Pencil Handwriting.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Thin Pencil Handwriting.ttf"; sourceTree = "<group>"; };
 		1D89E6DF24CBA77500E8B842 /* RenderingEngineController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderingEngineController.swift; sourceTree = "<group>"; };
+		1D89E6E124CBC57500E8B842 /* UINavigationBar+TouchRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+TouchRecognizer.swift"; sourceTree = "<group>"; };
 		1D938CA024C7D16100139E0E /* UIView+LivePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LivePreview.swift"; sourceTree = "<group>"; };
 		1DA4260624C9F07E00AB1A23 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		1DA42DD824C9262D00651D45 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				1D938CA024C7D16100139E0E /* UIView+LivePreview.swift */,
+				1D89E6E124CBC57500E8B842 /* UINavigationBar+TouchRecognizer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DA7403D24C79B7E0062058B /* AppDelegate.swift in Sources */,
+				1D89E6E224CBC57500E8B842 /* UINavigationBar+TouchRecognizer.swift in Sources */,
 				1DA42DDD24C92B3A00651D45 /* MenuHeader.swift in Sources */,
 				1D89E6E024CBA77500E8B842 /* RenderingEngineController.swift in Sources */,
 				1D938CA124C7D16100139E0E /* UIView+LivePreview.swift in Sources */,
