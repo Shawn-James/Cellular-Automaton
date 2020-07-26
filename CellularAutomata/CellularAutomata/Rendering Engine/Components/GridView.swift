@@ -14,7 +14,7 @@ class GridView: UIView {
     
     var timer: Timer?
     
-    let columnCount: CGFloat = 15 // MVP wants 25, but that is too small for fingers in iOS - this breaks at 20
+    let columnCount: CGFloat = 19 // MVP wants 25, but that is too small for fingers in iOS - this breaks at 20
     lazy var rowCount: CGFloat = { (frame.height / cellSize.height).rounded(.awayFromZero) }() // round up to avoid gap at bottom of screen
     
     lazy var cellSize: CGSize = {
@@ -147,6 +147,7 @@ extension GridView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+        AudioPlayer.shared.playSound("move")
         cell.backgroundColor = cell.backgroundColor == .white ? .black : .white // toggle color
     }
     

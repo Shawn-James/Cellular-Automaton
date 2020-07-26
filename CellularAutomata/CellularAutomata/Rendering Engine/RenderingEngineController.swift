@@ -2,10 +2,12 @@
 //  RenderingEngineController.swift
 
 import UIKit
+import AVFoundation
 
 private let segueIdentifier = "OpenMenuController"
 
 class RenderingEngineController: UIViewController {
+    
     // MARK: - Properties
         
     let gridView = GridView()
@@ -14,7 +16,7 @@ class RenderingEngineController: UIViewController {
     
     lazy var menuBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(
-            image: UIImage(systemName: "arrowshape.turn.up.right"),
+            image: UIImage(systemName: "bookmark.fill"),
             style: .plain,
             target: self, action: #selector(handleMenuButtonPress))
         return barButton
@@ -24,8 +26,7 @@ class RenderingEngineController: UIViewController {
         let barButton = UIBarButtonItem(
             title: "",
             style: .plain,
-            target: nil,
-            action: nil)
+            target: self, action: #selector(handleBackButtonPress))
         return barButton
     }()
     
@@ -51,12 +52,13 @@ class RenderingEngineController: UIViewController {
         // nav bar buttons
         navigationItem.rightBarButtonItem = menuBarButton
         navigationItem.backBarButtonItem = backBarButton
-        let customBackButtonImage = UIImage(systemName: "arrowshape.turn.up.left")
+        let customBackButtonImage = UIImage(systemName: "xmark")
         navigationController?.navigationBar.backIndicatorImage = customBackButtonImage
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = customBackButtonImage
         // view
         view.backgroundColor = .white
         view.alpha = 0
+        AudioPlayer.shared.playSound("launch")
         UIView.animate(withDuration: 2) {
             self.view.alpha = 1
         }
@@ -92,13 +94,16 @@ class RenderingEngineController: UIViewController {
                 
         switch sender.currentTitle {
         case "Reset.":
+            AudioPlayer.shared.playSound("reset")
             gridView.timer?.invalidate()
             gridView.grid.reloadData()
             goButton.setTitle("Go!", for: .normal)
         case "Go!":
+            AudioPlayer.shared.playSound("start")
             gridView.startRendering()
             sender.setTitle("Pause", for: .normal)
         case "Pause":
+            AudioPlayer.shared.playSound("pause")
             gridView.timer?.invalidate()
             sender.setTitle("Go!", for: .normal)
         default: break
@@ -106,8 +111,13 @@ class RenderingEngineController: UIViewController {
     }
     
     @objc private func handleMenuButtonPress() {
+        AudioPlayer.shared.playSound("slide")
         let menuController = MenuController()
         navigationController?.pushViewController(menuController, animated: true)
+    }
+    
+    @objc func handleBackButtonPress() {
+        AudioPlayer.shared.playSound("slide")
     }
     
     // MARK: - Helper Methods
