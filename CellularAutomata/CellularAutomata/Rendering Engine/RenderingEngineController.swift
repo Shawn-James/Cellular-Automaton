@@ -94,6 +94,7 @@ class RenderingEngineController: UIViewController {
         case "Reset.":
             gridView.timer?.invalidate()
             gridView.grid.reloadData()
+            goButton.setTitle("Go!", for: .normal)
         case "Go!":
             gridView.startRendering()
             sender.setTitle("Pause", for: .normal)
