@@ -10,6 +10,9 @@
 		1D10F0E924C8BA1B00270AB2 /* Thin Pencil Handwriting.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D10F0E824C8B9EF00270AB2 /* Thin Pencil Handwriting.ttf */; };
 		1D89E6E024CBA77500E8B842 /* RenderingEngineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D89E6DF24CBA77500E8B842 /* RenderingEngineController.swift */; };
 		1D89E6E224CBC57500E8B842 /* UINavigationBar+TouchRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D89E6E124CBC57500E8B842 /* UINavigationBar+TouchRecognizer.swift */; };
+		1D89E6E424CBCAEB00E8B842 /* EngineBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D89E6E324CBCAEB00E8B842 /* EngineBrain.swift */; };
+		1D89E6E624CC953B00E8B842 /* GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D89E6E524CC953B00E8B842 /* GridCell.swift */; };
+		1D89E6E824CC99C600E8B842 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D89E6E724CC99C600E8B842 /* Section.swift */; };
 		1D938CA124C7D16100139E0E /* UIView+LivePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D938CA024C7D16100139E0E /* UIView+LivePreview.swift */; };
 		1DA4260724C9F07E00AB1A23 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA4260624C9F07E00AB1A23 /* GridView.swift */; };
 		1DA42DD924C9262D00651D45 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA42DD824C9262D00651D45 /* MenuController.swift */; };
@@ -26,6 +29,9 @@
 		1D10F0E824C8B9EF00270AB2 /* Thin Pencil Handwriting.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Thin Pencil Handwriting.ttf"; sourceTree = "<group>"; };
 		1D89E6DF24CBA77500E8B842 /* RenderingEngineController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderingEngineController.swift; sourceTree = "<group>"; };
 		1D89E6E124CBC57500E8B842 /* UINavigationBar+TouchRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+TouchRecognizer.swift"; sourceTree = "<group>"; };
+		1D89E6E324CBCAEB00E8B842 /* EngineBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineBrain.swift; sourceTree = "<group>"; };
+		1D89E6E524CC953B00E8B842 /* GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell.swift; sourceTree = "<group>"; };
+		1D89E6E724CC99C600E8B842 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		1D938CA024C7D16100139E0E /* UIView+LivePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LivePreview.swift"; sourceTree = "<group>"; };
 		1DA4260624C9F07E00AB1A23 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		1DA42DD824C9262D00651D45 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
@@ -132,6 +138,9 @@
 			isa = PBXGroup;
 			children = (
 				1DA4260624C9F07E00AB1A23 /* GridView.swift */,
+				1D89E6E524CC953B00E8B842 /* GridCell.swift */,
+				1D89E6E724CC99C600E8B842 /* Section.swift */,
+				1D89E6E324CBCAEB00E8B842 /* EngineBrain.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -210,13 +219,16 @@
 				1DA7403D24C79B7E0062058B /* AppDelegate.swift in Sources */,
 				1D89E6E224CBC57500E8B842 /* UINavigationBar+TouchRecognizer.swift in Sources */,
 				1DA42DDD24C92B3A00651D45 /* MenuHeader.swift in Sources */,
+				1D89E6E424CBCAEB00E8B842 /* EngineBrain.swift in Sources */,
 				1D89E6E024CBA77500E8B842 /* RenderingEngineController.swift in Sources */,
 				1D938CA124C7D16100139E0E /* UIView+LivePreview.swift in Sources */,
 				1DA42DDF24C9384600651D45 /* MenuSections.swift in Sources */,
+				1D89E6E824CC99C600E8B842 /* Section.swift in Sources */,
 				1DA42DDB24C92A0400651D45 /* MenuTableViewCell.swift in Sources */,
 				1DA7403F24C79B7E0062058B /* SceneDelegate.swift in Sources */,
 				1DA42DD924C9262D00651D45 /* MenuController.swift in Sources */,
 				1DA4260724C9F07E00AB1A23 /* GridView.swift in Sources */,
+				1D89E6E624CC953B00E8B842 /* GridCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

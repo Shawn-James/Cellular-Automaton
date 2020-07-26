@@ -8,7 +8,7 @@ private let segueIdentifier = "OpenMenuController"
 class RenderingEngineController: UIViewController {
     // MARK: - Properties
         
-    let grid = GridView()
+    let gridView = GridView()
     lazy var resetButton: UIButton = createNewButton(withTitle: "Reset.")
     lazy var goButton: UIButton = createNewButton(withTitle: "Go!")
     
@@ -61,11 +61,11 @@ class RenderingEngineController: UIViewController {
             self.view.alpha = 1
         }
         // grid
-        view.addSubview(grid)
-        grid.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        grid.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        grid.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        grid.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        view.addSubview(gridView)
+        gridView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        gridView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        gridView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        gridView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         // hStackView (Top)
         view.addSubview(hStackViewTop)
         hStackViewTop.heightAnchor.constraint(equalToConstant: 32).isActive = true
@@ -92,9 +92,14 @@ class RenderingEngineController: UIViewController {
                 
         switch sender.currentTitle {
         case "Reset.":
-            print("Perform reset.")
+            gridView.timer?.invalidate()
+            gridView.grid.reloadData()
         case "Go!":
-            print("Start the simulation.")
+            gridView.startRendering()
+            sender.setTitle("Pause", for: .normal)
+        case "Pause":
+            gridView.timer?.invalidate()
+            sender.setTitle("Go!", for: .normal)
         default: break
         }
     }

@@ -7,8 +7,14 @@ private let reuseIdentifier = "SimulationGridCell"
 
 class GridView: UIView {
     // MARK: - Properties
-
-    let columnCount: CGFloat = 9 // MVP wants 25, but that is too small for fingers in iOS
+//    typealias DataSource = UICollectionViewDiffableDataSource<Section, GridCell>
+//    typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, GridCell>
+    //    private var dataSource: DataSource!
+    //    private var snapshot: DataSourceSnapshot!
+    
+    var timer: Timer?
+    
+    let columnCount: CGFloat = 15 // MVP wants 25, but that is too small for fingers in iOS - this breaks at 20
     lazy var rowCount: CGFloat = { (frame.height / cellSize.height).rounded(.awayFromZero) }() // round up to avoid gap at bottom of screen
     
     lazy var cellSize: CGSize = {
@@ -45,7 +51,7 @@ class GridView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         // view
-//        UIView.setAnimationsEnabled(false) <- this can disable unwanted animations in collection view, but would also stop button animations on controller
+        //        UIView.setAnimationsEnabled(false) <- this can disable unwanted animations in collection view, but would also stop button animations on controller
         // delegates
         grid.delegate = self
         grid.dataSource = self
@@ -62,6 +68,60 @@ class GridView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Handlers
+    
+    func startRendering() {
+        timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(renderNextGeneration), userInfo: nil, repeats: true)
+    }
+    
+    // MARK: - Helper Methods
+    
+    @objc private func renderNextGeneration() {
+        // create snapshot // diffable - future
+        // count live neighbors - don't count self and don't count empty if on edge, if on edge, use same value?
+        // FIXME: - edges are broken
+        for cell in self.grid.visibleCells {
+            // current cell coordinates
+            let indexPath = self.grid.indexPath(for: cell)!
+            let x = indexPath.item
+            let y = indexPath.section
+            // neighbor coordinates
+            let NW = IndexPath(item: x-1, section: y-1)
+            let N = IndexPath(item: x, section: y-1)
+            let NE = IndexPath(item: x+1, section: y-1)
+            let W = IndexPath(item: x-1, section: y)
+            let E = IndexPath(item: x+1, section: y)
+            let SW = IndexPath(item: x-1, section: y+1)
+            let S = IndexPath(item: x, section: y+1)
+            let SE = IndexPath(item: x+1, section: y+1)
+            // hold live neighbor count
+            var liveCount = 0
+            // count live neighbors
+            for neighbor in [NW, N, NE, W, E, SW, S, SE] {
+                let cell = self.grid.cellForItem(at: neighbor)
+                if cell?.backgroundColor == UIColor.black {
+                    liveCount += 1
+                }
+            }
+            // render updates using rules
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                if liveCount == 3 {
+                    cell.backgroundColor = .black
+                } else if liveCount == 2 && cell.backgroundColor == .black {
+//                    do nothing
+                } else {
+                    cell.backgroundColor = .white
+                }
+            }
+        }
+        // future: mark for change // 0,1
+        // render changes // diff update
+    }
+    
+//    private func configureCollectionViewDataSource() {
+        //        dataSource = DataSource(<#init#>) - future, learn diffable data source to take snapshots
+//    }
     
 }
 
