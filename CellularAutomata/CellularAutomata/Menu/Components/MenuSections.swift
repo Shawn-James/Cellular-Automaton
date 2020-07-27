@@ -6,19 +6,19 @@ protocol SectionType: CustomStringConvertible {
 }
 
 enum MenuSections: Int, CaseIterable, CustomStringConvertible {
-    case presets
-    case settings
+    case user
+    case standard
     
     var description: String {
         switch self {
-        case .presets: return "Presets"
-        case .settings: return "Settings"
+        case .user: return "User"
+        case .standard: return "Standard"
         }
     }
     
 }
 
-enum PresetOptions: Int, CaseIterable, SectionType {
+enum UserPresetOptions: Int, CaseIterable, SectionType {
     case preset1
     case preset2
     
@@ -33,24 +33,25 @@ enum PresetOptions: Int, CaseIterable, SectionType {
     
 }
 
-enum SettingsOptions: Int, CaseIterable, SectionType {
-    case setting1
-    case setting2
-    case setting3
+enum StandardPresetOptions: Int, CaseIterable, SectionType {
+    case glider
+    case pulsar
+    case random
     
-    var containsSwitch: Bool {
-        switch self {
-        case .setting1: return true
-        case .setting2: return true
-        case .setting3: return false
-        }
-    }
+    var containsSwitch: Bool { return false }
+        // do this if want switches
+//        switch self {
+//        case .glider: return true
+//        case .pulsar: return true
+//        case .random: return false
+//        }
+//    }
     
     var description: String {
         switch self {
-        case .setting1: return "Setting 1"
-        case .setting2: return "Setting 2"
-        case .setting3: return "Setting 3"
+        case .glider: return "Glider"
+        case .pulsar: return "Pulsar"
+        case .random: return "Random"
         }
     }
 }

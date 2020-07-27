@@ -8,6 +8,19 @@ private let reuseIdentifier = "MenuTableViewCell"
 class MenuController: UIViewController {
     // MARK: - Properties
 
+    lazy var saveButton: UIBarButtonItem = {
+        let barButton = UIBarButtonItem(
+            title: "+ Save Current",
+            style: .plain,
+            target: self, action: #selector(handleSaveButtonPress))
+        return barButton
+    }()
+    
+    lazy var conwayHeader: MenuHeader = {
+        let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 100)
+        return MenuHeader(frame: frame)
+    }()
+    
     lazy var menuTableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -18,17 +31,15 @@ class MenuController: UIViewController {
         return tableView
     }()
     
-    lazy var conwayHeader: MenuHeader = {
-        let frame = CGRect(x: 0, y: 88, width: view.frame.width, height: 100)
-        return MenuHeader(frame: frame)
-    }()
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // navigation bar
-        navigationItem.title = "Menu"
+        navigationItem.title = "Presets"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        // bar buttons
+        navigationItem.rightBarButtonItem = saveButton
         // settings table view
         view.addSubview(menuTableView)
         menuTableView.tableHeaderView = conwayHeader
@@ -36,6 +47,10 @@ class MenuController: UIViewController {
     }
     
     // MARK: - Handlers
+    
+    @objc private func handleSaveButtonPress() {
+        print("Save")
+    }
     
     // MARK: - Helper Methods
     
@@ -71,8 +86,8 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let section = MenuSections(rawValue: section) else { return 0 }
         switch section {
-        case .presets: return PresetOptions.allCases.count
-        case .settings: return SettingsOptions.allCases.count
+        case .user: return UserPresetOptions.allCases.count
+        case .standard: return StandardPresetOptions.allCases.count
         }
     }
     
@@ -81,11 +96,11 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
         guard let section = MenuSections(rawValue: indexPath.section) else { return UITableViewCell() }
         
         switch section {
-        case .presets:
-            let preset = PresetOptions(rawValue: indexPath.row)
+        case .user:
+            let preset = UserPresetOptions(rawValue: indexPath.row)
             cell.sectionType = preset
-        case .settings:
-            let setting = SettingsOptions(rawValue: indexPath.row)
+        case .standard:
+            let setting = StandardPresetOptions(rawValue: indexPath.row)
             cell.sectionType = setting
         }
         
@@ -96,10 +111,10 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
         guard let section = MenuSections(rawValue: indexPath.section) else { return }
         
         switch section {
-        case .presets:
-            print(PresetOptions(rawValue: indexPath.row)!.description)
-        case .settings:
-            print(SettingsOptions(rawValue: indexPath.row)!.description)
+        case .user:
+            print(UserPresetOptions(rawValue: indexPath.row)!.description)
+        case .standard:
+            print(StandardPresetOptions(rawValue: indexPath.row)!.description)
         }
     }
     

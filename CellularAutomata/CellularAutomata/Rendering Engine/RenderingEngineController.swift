@@ -49,6 +49,7 @@ class RenderingEngineController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.tintColor = .red
+        navigationController?.navigationBar.prefersLargeTitles = false
         // nav bar buttons
         navigationItem.rightBarButtonItem = menuBarButton
         navigationItem.backBarButtonItem = backBarButton
