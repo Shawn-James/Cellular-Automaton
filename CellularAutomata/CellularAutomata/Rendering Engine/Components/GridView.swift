@@ -89,11 +89,11 @@ class GridView: UIView, UIGestureRecognizerDelegate {
                 if indexPath != lastSelectedCell {
                     let cell = grid.cellForItem(at: indexPath)!
                     // select item
-                    grid.selectItem(at: indexPath, animated: true, scrollPosition: .top)
+//                    grid.selectItem(at: indexPath, animated: true, scrollPosition: .left) // Still works without this. Do i need to declare that it is selected?
                     cell.backgroundColor = .black
                     AudioPlayer.shared.playSound("move")
                 }
-                
+
                 lastSelectedCell = indexPath
             }
         }
