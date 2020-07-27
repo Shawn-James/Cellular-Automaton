@@ -5,14 +5,15 @@ import UIKit
 
 private let reuseIdentifier = "SimulationGridCell"
 
-class GridView: UIView {
+class GridView: UIView, UIGestureRecognizerDelegate {
     // MARK: - Properties
-//    typealias DataSource = UICollectionViewDiffableDataSource<Section, GridCell>
-//    typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, GridCell>
+    //    typealias DataSource = UICollectionViewDiffableDataSource<Section, GridCell>
+    //    typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, GridCell>
     //    private var dataSource: DataSource!
     //    private var snapshot: DataSourceSnapshot!
     
     var timer: Timer?
+    var lastSelectedCell = IndexPath()
     
     let columnCount: CGFloat = 19 // MVP wants 25, but that is too small for fingers in iOS - this breaks at 20
     lazy var rowCount: CGFloat = { (frame.height / cellSize.height).rounded(.awayFromZero) }() // round up to avoid gap at bottom of screen
@@ -28,7 +29,7 @@ class GridView: UIView {
         (frame.width / columnCount) - 1
     }() // used for width or height
     
-    let grid: UICollectionView = {
+    lazy var grid: UICollectionView = {
         // layout
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -36,13 +37,19 @@ class GridView: UIView {
         // collection view (grid)
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.isScrollEnabled = false
+        collectionView.canCancelContentTouches = false
+        collectionView.allowsMultipleSelection = true
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .systemBlue
-        collectionView.allowsMultipleSelection = false
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        // pan gesture
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(toSelectCells:)))
+        collectionView.addGestureRecognizer(panGesture)
+        panGesture.delegate = self
         return collectionView
     }()
     
@@ -73,6 +80,23 @@ class GridView: UIView {
     
     func startRendering() {
         timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(renderNextGeneration), userInfo: nil, repeats: true)
+    }
+    
+    @objc func handlePanGesture(toSelectCells panGesture: UIPanGestureRecognizer) {
+        if panGesture.state == .changed {
+            let location: CGPoint = panGesture.location(in: grid)
+            if let indexPath: IndexPath = grid.indexPathForItem(at: location) {
+                if indexPath != lastSelectedCell {
+                    let cell = grid.cellForItem(at: indexPath)!
+                    // select item
+                    grid.selectItem(at: indexPath, animated: true, scrollPosition: .top)
+                    cell.backgroundColor = .black
+                    AudioPlayer.shared.playSound("move")
+                }
+                
+                lastSelectedCell = indexPath
+            }
+        }
     }
     
     // MARK: - Helper Methods
@@ -109,7 +133,7 @@ class GridView: UIView {
                 if liveCount == 3 {
                     cell.backgroundColor = .black
                 } else if liveCount == 2 && cell.backgroundColor == .black {
-//                    do nothing
+                    //                    do nothing
                 } else {
                     cell.backgroundColor = .white
                 }
@@ -119,9 +143,9 @@ class GridView: UIView {
         // render changes // diff update
     }
     
-//    private func configureCollectionViewDataSource() {
-        //        dataSource = DataSource(<#init#>) - future, learn diffable data source to take snapshots
-//    }
+    //    private func configureCollectionViewDataSource() {
+    //        dataSource = DataSource(<#init#>) - future, learn diffable data source to take snapshots
+    //    }
     
 }
 
@@ -144,7 +168,7 @@ extension GridView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         cell.backgroundColor = .white
         return cell
     }
-    
+        
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         AudioPlayer.shared.playSound("move")
