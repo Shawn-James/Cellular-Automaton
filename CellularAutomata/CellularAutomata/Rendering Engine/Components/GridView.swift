@@ -89,11 +89,11 @@ class GridView: UIView, UIGestureRecognizerDelegate {
                 if indexPath != lastSelectedCell {
                     let cell = grid.cellForItem(at: indexPath)!
                     // select item
-//                    grid.selectItem(at: indexPath, animated: true, scrollPosition: .left) // Still works without this. Do i need to declare that it is selected?
+                    //                    grid.selectItem(at: indexPath, animated: true, scrollPosition: .left) // Still works without this. Do i need to declare that it is selected?
                     cell.backgroundColor = .black
                     AudioPlayer.shared.playSound("move")
                 }
-
+                
                 lastSelectedCell = indexPath
             }
         }
@@ -110,15 +110,15 @@ class GridView: UIView, UIGestureRecognizerDelegate {
             let indexPath = self.grid.indexPath(for: cell)!
             let x = indexPath.item
             let y = indexPath.section
-            // neighbor coordinates
-            let NW = IndexPath(item: x-1, section: y-1)
-            let N = IndexPath(item: x, section: y-1)
-            let NE = IndexPath(item: x+1, section: y-1)
-            let W = IndexPath(item: x-1, section: y)
-            let E = IndexPath(item: x+1, section: y)
-            let SW = IndexPath(item: x-1, section: y+1)
-            let S = IndexPath(item: x, section: y+1)
-            let SE = IndexPath(item: x+1, section: y+1)
+            // neighbor coordinates (using an equation to handle wrap-around)
+            let NW = IndexPath(item: (x-1 + Int(columnCount)) % Int(columnCount), section: (y-1 + Int(rowCount)) % Int(rowCount))
+            let N = IndexPath(item: (x + Int(columnCount)) % Int(columnCount), section: (y-1 + Int(rowCount)) % Int(rowCount))
+            let NE = IndexPath(item: (x+1 + Int(columnCount)) % Int(columnCount), section: (y-1 + Int(rowCount)) % Int(rowCount))
+            let W = IndexPath(item: (x-1 + Int(columnCount)) % Int(columnCount), section: (y + Int(rowCount)) % Int(rowCount))
+            let E = IndexPath(item: (x+1 + Int(columnCount)) % Int(columnCount), section: (y + Int(rowCount)) % Int(rowCount))
+            let SW = IndexPath(item: (x-1 + Int(columnCount)) % Int(columnCount), section: (y+1 + Int(rowCount)) % Int(rowCount))
+            let S = IndexPath(item: (x + Int(columnCount)) % Int(columnCount), section: (y+1 + Int(rowCount)) % Int(rowCount))
+            let SE = IndexPath(item: (x+1 + Int(columnCount)) % Int(columnCount), section: (y+1 + Int(rowCount)) % Int(rowCount))
             // hold live neighbor count
             var liveCount = 0
             // count live neighbors
@@ -168,7 +168,7 @@ extension GridView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         cell.backgroundColor = .white
         return cell
     }
-        
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         AudioPlayer.shared.playSound("move")
