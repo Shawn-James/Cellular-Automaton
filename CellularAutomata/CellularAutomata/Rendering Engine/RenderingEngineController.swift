@@ -170,18 +170,14 @@ extension RenderingEngineController: MenuControllerDelegate {
     }
     
     func handleStandardPresetSelection(_ selection: StandardPresetOptions) {
-                
         let group = DispatchGroup()
         group.enter()
-        
+        // perform reset
         DispatchQueue.main.async {
             self.performReset()
             group.leave()
         }
-        
-        // does not wait. But the code in notify() gets run
-        // after enter() and leave() calls are balanced
-        
+        // after the reset, render the preset
         group.notify(queue: .main) {
             switch selection {
             case .glider: break
