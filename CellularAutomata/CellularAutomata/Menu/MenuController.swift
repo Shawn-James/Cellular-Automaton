@@ -6,8 +6,11 @@ import UIKit
 private let reuseIdentifier = "MenuTableViewCell"
 
 class MenuController: UIViewController {
+    
     // MARK: - Properties
 
+    var delegate: MenuControllerDelegate?
+    
     lazy var saveButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(
             title: "+ Save Current",
@@ -110,14 +113,30 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let section = MenuSections(rawValue: indexPath.section) else { return }
         
-        switch section {
-        case .user:
-            print(UserPresetOptions(rawValue: indexPath.row)!.description)
-        case .standard:
-            print(StandardPresetOptions(rawValue: indexPath.row)!.description)
+        exitMenu {
+            print("closure did run")
+            switch section {
+            case .user:
+                let selection = UserPresetOptions(rawValue: indexPath.row)!
+                delegate?.handleUserPresetSelection(selection)
+            case .standard:
+                let selection = StandardPresetOptions(rawValue: indexPath.row)!
+                delegate?.handleStandardPresetSelection(selection)
+            }
         }
+        
     }
     
+    private func exitMenu(completion: () -> ()) {
+        navigationController?.popViewController(animated: true)
+        completion()
+    }
+    
+}
+
+protocol MenuControllerDelegate {
+    func handleUserPresetSelection(_ selection: UserPresetOptions)
+    func handleStandardPresetSelection(_ selection: StandardPresetOptions)
 }
 
 // MARK: - Live Previews

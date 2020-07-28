@@ -125,6 +125,7 @@ class RenderingEngineController: UIViewController {
         AudioPlayer.shared.playSound("slide")
         let menuController = MenuController()
         navigationController?.pushViewController(menuController, animated: true)
+        menuController.delegate = self
 //        prepare(for: <#T##UIStoryboardSegue#>, sender: <#T##Any?#>)
 //        navigationController?.performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
     }
@@ -158,6 +159,55 @@ class RenderingEngineController: UIViewController {
         
     }
 
+}
+
+extension RenderingEngineController: MenuControllerDelegate {
+    
+    // MARK: - Handlers
+
+    func handleUserPresetSelection(_ selection: UserPresetOptions) {
+//        performReset()
+    }
+    
+    func handleStandardPresetSelection(_ selection: StandardPresetOptions) {
+                
+        let group = DispatchGroup()
+        group.enter()
+        
+        DispatchQueue.main.async {
+            self.performReset()
+            group.leave()
+        }
+        
+        // does not wait. But the code in notify() gets run
+        // after enter() and leave() calls are balanced
+        
+        group.notify(queue: .main) {
+            switch selection {
+            case .glider: break
+            case .pulsar: break
+            case .spaceShip: break
+            case .random:
+                for cell in self.gridView.grid.visibleCells {
+                    let chance = Int.random(in: 0...1)
+                    cell.backgroundColor = chance == 0 ? .black : .white
+                }
+            }
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func performReset() {
+        gridView.timer?.invalidate()
+        gridView.grid.reloadData()
+        goButton.setTitle("Go!", for: .normal)
+    }
+    
+    func renderStandardPreset(for selection: String) {
+        
+    }
+    
 }
 
 // MARK: - Live Preview

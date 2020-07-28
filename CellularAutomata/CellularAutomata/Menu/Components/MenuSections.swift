@@ -36,6 +36,7 @@ enum UserPresetOptions: Int, CaseIterable, SectionType {
 enum StandardPresetOptions: Int, CaseIterable, SectionType {
     case glider
     case pulsar
+    case spaceShip
     case random
     
     var containsSwitch: Bool { return false }
@@ -51,6 +52,7 @@ enum StandardPresetOptions: Int, CaseIterable, SectionType {
         switch self {
         case .glider: return "Glider"
         case .pulsar: return "Pulsar"
+        case .spaceShip: return "Spaceship"
         case .random: return "Random"
         }
     }
