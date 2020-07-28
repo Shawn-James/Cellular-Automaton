@@ -3,6 +3,6 @@
 
 import UIKit
 
-//class GridCell: UICollectionViewCell {
-//
-//}
+class GridCell: UICollectionViewCell {
+    var isAlive: Bool = false
+}

@@ -7,10 +7,10 @@ private let reuseIdentifier = "SimulationGridCell"
 
 class GridView: UIView, UIGestureRecognizerDelegate {
     // MARK: - Properties
-    //    typealias DataSource = UICollectionViewDiffableDataSource<Section, GridCell>
-    //    typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, GridCell>
-    //    private var dataSource: DataSource!
-    //    private var snapshot: DataSourceSnapshot!
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, Cell>
+    typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, Cell>
+    private var dataSource: DataSource!
+    private var snapshot = DataSourceSnapshot()
     
     var timer: Timer?
     var lastSelectedCell = IndexPath()
@@ -79,7 +79,8 @@ class GridView: UIView, UIGestureRecognizerDelegate {
     // MARK: - Handlers
     
     func startRendering() {
-        timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(renderNextGeneration), userInfo: nil, repeats: true)
+        let speed = 0.05 // seconds between each generation
+        timer = Timer.scheduledTimer(timeInterval: speed, target: self, selector: #selector(renderNextGeneration), userInfo: nil, repeats: true)
     }
     
     @objc func handlePanGesture(toSelectCells panGesture: UIPanGestureRecognizer) {
@@ -102,9 +103,9 @@ class GridView: UIView, UIGestureRecognizerDelegate {
     // MARK: - Helper Methods
     
     @objc private func renderNextGeneration() {
-        // create snapshot // diffable - future
-        // count live neighbors - don't count self and don't count empty if on edge, if on edge, use same value?
-        // FIXME: - edges are broken
+        // mark cells for change
+        var cells = [UICollectionViewCell : Int]()
+        // find neighboards
         for cell in self.grid.visibleCells {
             // current cell coordinates
             let indexPath = self.grid.indexPath(for: cell)!
@@ -128,24 +129,35 @@ class GridView: UIView, UIGestureRecognizerDelegate {
                     liveCount += 1
                 }
             }
-            // render updates using rules
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                if liveCount == 3 {
-                    cell.backgroundColor = .black
-                } else if liveCount == 2 && cell.backgroundColor == .black {
-                    //                    do nothing
-                } else {
-                    cell.backgroundColor = .white
-                }
+            // mark for change
+            cells[cell] = liveCount
+        }
+        // render updates using rules
+        for element in cells {
+            let cell = element.key
+            let liveCount = element.value
+            // rules
+            if liveCount == 3 {
+                cell.backgroundColor = .black
+            } else if liveCount == 2 && cell.backgroundColor == .black {
+                // do nothing
+            } else {
+                cell.backgroundColor = .white
             }
         }
-        // future: mark for change // 0,1
-        // render changes // diff update
     }
     
-    //    private func configureCollectionViewDataSource() {
-    //        dataSource = DataSource(<#init#>) - future, learn diffable data source to take snapshots
-    //    }
+    private func configureCollectionViewDataSource() {
+        dataSource = DataSource(collectionView: grid, cellProvider: { (collectionView, indexPath, cell) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! GridCell
+            cell.backgroundColor = cell.isAlive == true ? .black : .white
+            return cell
+        })
+    }
+    
+    private func applySnapshot(cells: [Cell]) {
+        snapshot = DataSourceSnapshot()
+    }
     
 }
 

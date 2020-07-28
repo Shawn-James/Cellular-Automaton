@@ -40,6 +40,16 @@ class RenderingEngineController: UIViewController {
         return stackView
     }()
     
+//    lazy var segueToMenu: UIStoryboardSegue = {
+////        let segue = UIStoryboardSegue(
+////            identifier: "RenderingEngineToMenuSegue",
+////            source: self,
+////            destination: MenuController()) {
+//////                guard let menuController = destination as MenuController
+////        }
+////        return segue
+//    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -115,6 +125,8 @@ class RenderingEngineController: UIViewController {
         AudioPlayer.shared.playSound("slide")
         let menuController = MenuController()
         navigationController?.pushViewController(menuController, animated: true)
+//        prepare(for: <#T##UIStoryboardSegue#>, sender: <#T##Any?#>)
+//        navigationController?.performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
     }
     
     @objc func handleBackButtonPress() {
@@ -139,6 +151,11 @@ class RenderingEngineController: UIViewController {
         button.addTarget(self, action: #selector(handleButtonPress(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
+    }
+    
+    private func prepareForSegueManually() {
+//        guard let menuController = segue.destination MenuController as MenuController else { return }
+        
     }
 
 }

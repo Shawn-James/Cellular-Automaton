@@ -30,6 +30,7 @@
 		1DED12EA24CD4C0F00B0851A /* move.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1DED12E924CD4C0F00B0851A /* move.mp3 */; };
 		1DED12EC24CD4C2300B0851A /* slide.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1DED12EB24CD4C2300B0851A /* slide.mp3 */; };
 		1DED12EE24CDDE3B00B0851A /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DED12ED24CDDE3B00B0851A /* AudioPlayer.swift */; };
+		1DED131A24D0995D00B0851A /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DED131924D0995D00B0851A /* Cell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		1DED12E924CD4C0F00B0851A /* move.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = move.mp3; sourceTree = "<group>"; };
 		1DED12EB24CD4C2300B0851A /* slide.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = slide.mp3; sourceTree = "<group>"; };
 		1DED12ED24CDDE3B00B0851A /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		1DED131924D0995D00B0851A /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			children = (
 				1DA4260624C9F07E00AB1A23 /* GridView.swift */,
 				1D89E6E524CC953B00E8B842 /* GridCell.swift */,
+				1DED131924D0995D00B0851A /* Cell.swift */,
 				1D89E6E724CC99C600E8B842 /* Section.swift */,
 				1D89E6E324CBCAEB00E8B842 /* EngineBrain.swift */,
 			);
@@ -253,6 +256,7 @@
 			files = (
 				1DA7403D24C79B7E0062058B /* AppDelegate.swift in Sources */,
 				1D89E6E224CBC57500E8B842 /* UINavigationBar+TouchRecognizer.swift in Sources */,
+				1DED131A24D0995D00B0851A /* Cell.swift in Sources */,
 				1DA42DDD24C92B3A00651D45 /* MenuHeader.swift in Sources */,
 				1D89E6E424CBCAEB00E8B842 /* EngineBrain.swift in Sources */,
 				1D89E6E024CBA77500E8B842 /* RenderingEngineController.swift in Sources */,
@@ -401,7 +405,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SKL49NTL5D;
+				DEVELOPMENT_TEAM = VXUQXR6S56;
 				INFOPLIST_FILE = CellularAutomata/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -419,7 +423,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SKL49NTL5D;
+				DEVELOPMENT_TEAM = VXUQXR6S56;
 				INFOPLIST_FILE = CellularAutomata/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
