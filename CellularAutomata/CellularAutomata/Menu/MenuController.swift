@@ -149,8 +149,6 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case .user:
             let fetchedObjectName = fetchedResultsController.object(at: indexPath).name
-            print(fetchedObjectName)
-//            cell.textLabel?.text = fetchedObjectName
             let setting = UserPresetOptions(description: fetchedObjectName ?? "No Name")
             cell.sectionType = setting
         case .standard:
