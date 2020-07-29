@@ -114,7 +114,6 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
         guard let section = MenuSections(rawValue: indexPath.section) else { return }
         
         exitMenu {
-            print("closure did run")
             switch section {
             case .user:
                 let selection = UserPresetOptions(rawValue: indexPath.row)!

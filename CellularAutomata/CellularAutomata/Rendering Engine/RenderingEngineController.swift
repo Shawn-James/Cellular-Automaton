@@ -15,7 +15,7 @@ class RenderingEngineController: UIViewController {
     
     lazy var menuBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(
-            image: UIImage(systemName: "bookmark.fill"),
+            image: UIImage(systemName: "archivebox.fill"),
             style: .plain,
             target: self, action: #selector(handleMenuButtonPress))
         return barButton
@@ -125,8 +125,6 @@ class RenderingEngineController: UIViewController {
         let menuController = MenuController()
         navigationController?.pushViewController(menuController, animated: true)
         menuController.delegate = self
-//        prepare(for: <#T##UIStoryboardSegue#>, sender: <#T##Any?#>)
-//        navigationController?.performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
     }
     
     @objc func handleBackButtonPress() {
@@ -152,11 +150,6 @@ class RenderingEngineController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
-    
-    private func prepareForSegueManually() {
-//        guard let menuController = segue.destination MenuController as MenuController else { return }
-        
-    }
 
 }
 
@@ -179,15 +172,65 @@ extension RenderingEngineController: MenuControllerDelegate {
         // after the reset, render the preset
         group.notify(queue: .main) {
             switch selection {
-            case .glider: break
-            case .pulsar: break
-            case .spaceShip: break
+            case .glider:
+            self.gridView.grid.cellForItem(at: IndexPath(item: 0, section: 5))?.backgroundColor = .black
+            self.gridView.grid.cellForItem(at: IndexPath(item: 1, section: 6))?.backgroundColor = .black
+            self.gridView.grid.cellForItem(at: IndexPath(item: 2, section: 6))?.backgroundColor = .black
+            self.gridView.grid.cellForItem(at: IndexPath(item: 2, section: 5))?.backgroundColor = .black
+            self.gridView.grid.cellForItem(at: IndexPath(item: 2, section: 4))?.backgroundColor = .black
+
+            case .jellyfish:
+                let midX = Int(self.gridView.columnCount / 2)
+                let lowY = Int(self.gridView.rowCount - 10)
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-4, section: lowY-5))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-4, section: lowY-7))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-4, section: lowY-8))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-3, section: lowY-4))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-3, section: lowY-11))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-2, section: lowY-3))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-2, section: lowY-4))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-2, section: lowY-8))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-2, section: lowY-11))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-1, section: lowY))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-1, section: lowY-1))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-1, section: lowY-3))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-1, section: lowY-9))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-1, section: lowY-10))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX, section: lowY))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX, section: lowY-1))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX, section: lowY-3))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX, section: lowY-9))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX, section: lowY-10))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX+1, section: lowY-3))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX+1, section: lowY-4))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX+1, section: lowY-8))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX+1, section: lowY-11))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX+2, section: lowY-4))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX+2, section: lowY-11))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX+3, section: lowY-5))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX+3, section: lowY-7))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX+3, section: lowY-8))?.backgroundColor = .black
+                
+            case .spaceShip:
+                let midX = Int(self.gridView.columnCount / 2)
+                let midY = Int(self.gridView.rowCount / 2)
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX, section: midY))?.backgroundColor = .black // center
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-1, section: midY))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-2, section: midY))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-2, section: midY-1))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-2, section: midY-2))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX-1, section: midY-3))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX+1, section: midY))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX+2, section: midY-1))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: midX+2, section: midY-3))?.backgroundColor = .black
+            
             case .random:
                 for cell in self.gridView.grid.visibleCells {
                     let chance = Int.random(in: 0...1)
                     cell.backgroundColor = chance == 0 ? .black : .white
                 }
             }
+            AudioPlayer.shared.playSound("move")
         }
     }
     
