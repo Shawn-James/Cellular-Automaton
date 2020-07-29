@@ -71,6 +71,7 @@ class MenuController: UIViewController {
         super.viewDidLoad()
         // navigation bar
         navigationItem.title = "Presets"
+        navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
         // bar buttons
         navigationItem.rightBarButtonItem = saveButton
