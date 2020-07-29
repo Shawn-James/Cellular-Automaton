@@ -13,6 +13,7 @@ class GridView: UIView, UIGestureRecognizerDelegate {
     private var snapshot = DataSourceSnapshot()
     
     var timer: Timer?
+    var generationCount = 0 // starts at zero
     var lastSelectedCell = IndexPath()
     
     let columnCount: CGFloat = 19 // MVP wants 25, but that is too small for fingers in iOS - this breaks at 20
@@ -106,7 +107,7 @@ class GridView: UIView, UIGestureRecognizerDelegate {
         // mark cells for change
         var cells = [UICollectionViewCell : Int]()
         // find neighboards
-        for cell in self.grid.visibleCells {
+        for cell in self.grid.visibleCells { // would need to figure out how to grab all cells to fix vertical wrap-around
             // current cell coordinates
             let indexPath = self.grid.indexPath(for: cell)!
             let x = indexPath.item

@@ -39,16 +39,6 @@ class RenderingEngineController: UIViewController {
         return stackView
     }()
     
-//    lazy var segueToMenu: UIStoryboardSegue = {
-////        let segue = UIStoryboardSegue(
-////            identifier: "RenderingEngineToMenuSegue",
-////            source: self,
-////            destination: MenuController()) {
-//////                guard let menuController = destination as MenuController
-////        }
-////        return segue
-//    }()
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -125,6 +115,7 @@ class RenderingEngineController: UIViewController {
         let menuController = MenuController()
         navigationController?.pushViewController(menuController, animated: true)
         menuController.delegate = self
+        menuController.liveGrid = gridView.grid
     }
     
     @objc func handleBackButtonPress() {
@@ -157,8 +148,22 @@ extension RenderingEngineController: MenuControllerDelegate {
     
     // MARK: - Handlers
 
-    func handleUserPresetSelection(_ selection: UserPresetOptions) {
-//        performReset()
+    func handleUserPresetSelection(_ userPresetSelection: UserPreset) {
+        let group = DispatchGroup()
+        group.enter()
+        // perform reset
+        DispatchQueue.main.async {
+            self.performReset()
+            group.leave()
+        }
+        // after the reset, render the preset
+        group.notify(queue: .main) {
+            guard let cells = userPresetSelection.cells as? Set<CellPosition> else { return }
+            for cell in cells {
+                self.gridView.grid.cellForItem(at: IndexPath(item: Int(cell.x), section: Int(cell.y)))?.backgroundColor = .black
+            }
+            AudioPlayer.shared.playSound("move")
+        }
     }
     
     func handleStandardPresetSelection(_ selection: StandardPresetOptions) {

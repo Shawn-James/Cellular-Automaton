@@ -15,22 +15,11 @@ enum MenuSections: Int, CaseIterable, CustomStringConvertible {
         case .standard: return "Standard"
         }
     }
-    
 }
 
-enum UserPresetOptions: Int, CaseIterable, SectionType {
-    case preset1
-    case preset2
-    
+struct UserPresetOptions: SectionType {
+    var description: String
     var containsSwitch: Bool { return false }
-    
-    var description: String {
-        switch self {
-        case .preset1: return "Preset 1"
-        case .preset2: return "Preset 2"
-        }
-    }
-    
 }
 
 enum StandardPresetOptions: Int, CaseIterable, SectionType {
@@ -40,13 +29,13 @@ enum StandardPresetOptions: Int, CaseIterable, SectionType {
     case random
     
     var containsSwitch: Bool { return false }
-        // do this if want switches
-//        switch self {
-//        case .glider: return true
-//        case .pulsar: return true
-//        case .random: return false
-//        }
-//    }
+    // do this if want switches
+    //        switch self {
+    //        case .glider: return true
+    //        case .pulsar: return true
+    //        case .random: return false
+    //        }
+    //    }
     
     var description: String {
         switch self {

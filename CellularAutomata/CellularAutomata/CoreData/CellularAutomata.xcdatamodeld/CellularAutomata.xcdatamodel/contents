@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CellPosition" representedClassName="CellPosition" syncable="YES" codeGenerationType="class">
+        <attribute name="x" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="y" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="owner" maxCount="1" deletionRule="Nullify" destinationEntity="UserPreset" inverseName="cells" inverseEntity="UserPreset"/>
+    </entity>
+    <entity name="UserPreset" representedClassName="UserPreset" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="cells" toMany="YES" deletionRule="Nullify" destinationEntity="CellPosition" inverseName="owner" inverseEntity="CellPosition"/>
+    </entity>
+    <elements>
+        <element name="UserPreset" positionX="-45" positionY="0" width="128" height="88"/>
+        <element name="CellPosition" positionX="-18" positionY="27" width="128" height="88"/>
+    </elements>
+</model>
