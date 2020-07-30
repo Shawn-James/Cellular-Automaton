@@ -88,19 +88,16 @@ class GridView: UIView, UIGestureRecognizerDelegate {
     }
     
     @objc func handlePanGesture(toSelectCells panGesture: UIPanGestureRecognizer) {
-        if panGesture.state == .changed {
-            let location: CGPoint = panGesture.location(in: grid)
-            if let indexPath: IndexPath = grid.indexPathForItem(at: location) {
-                if indexPath != lastSelectedCell {
-                    let cell = grid.cellForItem(at: indexPath)!
-                    // select item
-                    //                    grid.selectItem(at: indexPath, animated: true, scrollPosition: .left) // Still works without this. Do i need to declare that it is selected?
-                    cell.backgroundColor = .black
-                    AudioPlayer.shared.playSound("move")
-                }
+        let location: CGPoint = panGesture.location(in: grid)
+        if let indexPath: IndexPath = grid.indexPathForItem(at: location) {
+            if indexPath != lastSelectedCell {
+                let cell = grid.cellForItem(at: indexPath)!
                 
-                lastSelectedCell = indexPath
+                DispatchQueue.main.async {
+                    cell.backgroundColor = .black
+                }
             }
+            lastSelectedCell = indexPath
         }
     }
     
