@@ -15,7 +15,7 @@ class RenderingEngineController: UIViewController {
     
     lazy var menuBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(
-            image: UIImage(systemName: "archivebox.fill"),
+            image: UIImage(systemName: "bookmark.fill"),
             style: .plain,
             target: self, action: #selector(handleMenuButtonPress))
         return barButton
