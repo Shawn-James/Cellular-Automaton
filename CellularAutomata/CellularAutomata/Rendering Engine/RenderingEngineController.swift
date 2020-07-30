@@ -157,7 +157,9 @@ class RenderingEngineController: UIViewController {
         guard UserDefaults.standard.bool(forKey: .notNewUser) else { // show onboarding if new user\
             let onboardingViewController = OnboardingController()
             onboardingViewController.modalPresentationStyle = .fullScreen
-            present(onboardingViewController, animated: true) { }
+            present(onboardingViewController, animated: true) {
+                UserDefaults.standard.set(true, forKey: .showGenerationKey) // show generation by default for new users
+            }
             return
         }
     }
