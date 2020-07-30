@@ -15,7 +15,7 @@ class MenuController: UIViewController {
     
     lazy var saveButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(
-            title: "+ Save Current",
+            title: "+ Save Current Grid",
             style: .plain,
             target: self, action: #selector(handleSaveButtonPress))
         return barButton
