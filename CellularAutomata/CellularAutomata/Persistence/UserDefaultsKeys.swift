@@ -3,4 +3,5 @@
 
 extension String {
     static var showGenerationKey = "shouldShowGeneration"
+    static var notNewUser = "isNotNewUser"
 }

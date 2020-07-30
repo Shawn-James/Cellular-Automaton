@@ -175,7 +175,9 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
             case .standard:
                 let selection = StandardPresetOptions(rawValue: indexPath.row)!
                 delegate?.handleStandardPresetSelection(selection)
-            case .appSettings: break
+            case .appSettings:
+                let selection = AppSettingsOptions(rawValue: indexPath.row)!
+                delegate?.handleAppSettingSelection(selection)
             }
         }
     }
@@ -190,6 +192,7 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
 protocol MenuControllerDelegate {
     func handleUserPresetSelection(_ userPresetSelection: UserPreset)
     func handleStandardPresetSelection(_ selection: StandardPresetOptions)
+    func handleAppSettingSelection(_ selection: AppSettingsOptions)
 }
 
 extension MenuController: NSFetchedResultsControllerDelegate {

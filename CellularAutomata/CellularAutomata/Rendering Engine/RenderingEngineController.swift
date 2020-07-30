@@ -8,7 +8,7 @@ private let segueIdentifier = "OpenMenuController"
 class RenderingEngineController: UIViewController {
     
     // MARK: - Properties
-        
+    
     let gridView = GridView()
     lazy var resetButton: UIButton = createNewButton(withTitle: "Reset.")
     lazy var goButton: UIButton = createNewButton(withTitle: "Go!")
@@ -43,6 +43,7 @@ class RenderingEngineController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showOnboardingIfNewUser()
         // nav bar
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -91,7 +92,7 @@ class RenderingEngineController: UIViewController {
     }
     
     // MARK: - Handlers
-
+    
     @objc private func handleButtonPress(sender: UIButton) {
         UIButton.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             sender.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
@@ -100,7 +101,7 @@ class RenderingEngineController: UIViewController {
                 sender.transform = CGAffineTransform.identity
             }, completion: nil)
         }
-                
+        
         switch sender.currentTitle {
         case "Reset.":
             AudioPlayer.shared.playSound("reset")
@@ -151,13 +152,22 @@ class RenderingEngineController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
-
+    
+    private func showOnboardingIfNewUser() {
+        guard UserDefaults.standard.bool(forKey: .notNewUser) else { // show onboarding if new user\
+            let onboardingViewController = OnboardingController()
+            onboardingViewController.modalPresentationStyle = .fullScreen
+            present(onboardingViewController, animated: true) { }
+            return
+        }
+    }
+    
 }
 
 extension RenderingEngineController: MenuControllerDelegate {
     
     // MARK: - Handlers
-
+    
     func handleUserPresetSelection(_ userPresetSelection: UserPreset) {
         let group = DispatchGroup()
         group.enter()
@@ -188,12 +198,12 @@ extension RenderingEngineController: MenuControllerDelegate {
         group.notify(queue: .main) {
             switch selection {
             case .glider:
-            self.gridView.grid.cellForItem(at: IndexPath(item: 0, section: 5))?.backgroundColor = .black
-            self.gridView.grid.cellForItem(at: IndexPath(item: 1, section: 6))?.backgroundColor = .black
-            self.gridView.grid.cellForItem(at: IndexPath(item: 2, section: 6))?.backgroundColor = .black
-            self.gridView.grid.cellForItem(at: IndexPath(item: 2, section: 5))?.backgroundColor = .black
-            self.gridView.grid.cellForItem(at: IndexPath(item: 2, section: 4))?.backgroundColor = .black
-
+                self.gridView.grid.cellForItem(at: IndexPath(item: 0, section: 5))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: 1, section: 6))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: 2, section: 6))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: 2, section: 5))?.backgroundColor = .black
+                self.gridView.grid.cellForItem(at: IndexPath(item: 2, section: 4))?.backgroundColor = .black
+                
             case .jellyfish:
                 let midX = Int(self.gridView.columnCount / 2)
                 let lowY = Int(self.gridView.rowCount - 10)
@@ -238,7 +248,7 @@ extension RenderingEngineController: MenuControllerDelegate {
                 self.gridView.grid.cellForItem(at: IndexPath(item: midX+1, section: midY))?.backgroundColor = .black
                 self.gridView.grid.cellForItem(at: IndexPath(item: midX+2, section: midY-1))?.backgroundColor = .black
                 self.gridView.grid.cellForItem(at: IndexPath(item: midX+2, section: midY-3))?.backgroundColor = .black
-            
+                
             case .random:
                 for cell in self.gridView.grid.visibleCells {
                     let chance = Int.random(in: 0...1)
@@ -247,6 +257,12 @@ extension RenderingEngineController: MenuControllerDelegate {
             }
             AudioPlayer.shared.playSound("move")
         }
+    }
+    
+    func handleAppSettingSelection(_ selection: AppSettingsOptions) {
+        let onboardingViewController = OnboardingController()
+        onboardingViewController.modalPresentationStyle = .fullScreen
+        present(onboardingViewController, animated: true) { }
     }
     
     // MARK: - Helpers

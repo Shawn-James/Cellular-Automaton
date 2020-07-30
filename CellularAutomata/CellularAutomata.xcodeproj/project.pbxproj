@@ -24,6 +24,7 @@
 		1DDD050E24D1E5A70016B7A1 /* UserPreset+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDD050D24D1E5A70016B7A1 /* UserPreset+Init.swift */; };
 		1DDD051224D20A5E0016B7A1 /* CellPosition+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDD051124D20A5E0016B7A1 /* CellPosition+Init.swift */; };
 		1DDD051724D23DE10016B7A1 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDD051624D23DE10016B7A1 /* UserDefaultsKeys.swift */; };
+		1DDD051A24D25A230016B7A1 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DDD051924D25A230016B7A1 /* OnboardingController.swift */; };
 		1DED12E224CD479100B0851A /* start.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1DED12E124CD479100B0851A /* start.mp3 */; };
 		1DED12E424CD479700B0851A /* pause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1DED12E324CD479700B0851A /* pause.mp3 */; };
 		1DED12E624CD49CE00B0851A /* reset.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1DED12E524CD49CE00B0851A /* reset.mp3 */; };
@@ -54,6 +55,7 @@
 		1DDD050D24D1E5A70016B7A1 /* UserPreset+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserPreset+Init.swift"; sourceTree = "<group>"; };
 		1DDD051124D20A5E0016B7A1 /* CellPosition+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CellPosition+Init.swift"; sourceTree = "<group>"; };
 		1DDD051624D23DE10016B7A1 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		1DDD051924D25A230016B7A1 /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
 		1DED12E124CD479100B0851A /* start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = start.mp3; sourceTree = "<group>"; };
 		1DED12E324CD479700B0851A /* pause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pause.mp3; sourceTree = "<group>"; };
 		1DED12E524CD49CE00B0851A /* reset.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = reset.mp3; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				1DA7405024C79BA90062058B /* Application */,
+				1DDD051824D259B20016B7A1 /* Onboarding */,
 				1DA42DE124C9DF2500651D45 /* Rendering Engine */,
 				1DA42DE024C9DF1F00651D45 /* Preset Menu */,
 			);
@@ -176,6 +179,14 @@
 				1D10F0E824C8B9EF00270AB2 /* Thin Pencil Handwriting.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		1DDD051824D259B20016B7A1 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				1DDD051924D25A230016B7A1 /* OnboardingController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		1DED12E024CD477E00B0851A /* AudioPlayer */ = {
@@ -295,6 +306,7 @@
 				1DA7403F24C79B7E0062058B /* SceneDelegate.swift in Sources */,
 				1DA42DD924C9262D00651D45 /* MenuController.swift in Sources */,
 				1DA4260724C9F07E00AB1A23 /* GridView.swift in Sources */,
+				1DDD051A24D25A230016B7A1 /* OnboardingController.swift in Sources */,
 				1DED12EE24CDDE3B00B0851A /* AudioPlayer.swift in Sources */,
 				1DDD050C24D1E44C0016B7A1 /* CellularAutomata.xcdatamodeld in Sources */,
 			);

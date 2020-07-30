@@ -44,24 +44,26 @@ enum StandardPresetOptions: Int, CaseIterable, SectionType {
 
 enum AppSettingsOptions: Int, CaseIterable, SectionType {
     case showGenerationLabel
+    case help
     
-    var containsSwitch: Bool { return true }
-    // do this if want switches
-    //        switch self {
-    //        case .glider: return true
-    //        case .pulsar: return true
-    //        case .random: return false
-    //        }
-    //    }
+    var containsSwitch: Bool {
+        switch self {
+        case .showGenerationLabel: return true
+        case .help: return false
+        }
+    }
+    
     var userDefaultsKey: String {
         switch self {
         case .showGenerationLabel: return .showGenerationKey
+        case .help: return "nil"
         }
     }
     
     var description: String {
         switch self {
         case .showGenerationLabel: return "Show Generation Number"
+        case .help: return "Help"
         }
     }
 }
