@@ -64,7 +64,7 @@ class OnboardingController: UIViewController {
             pageView.addSubview(imageView)
             // button
             let button = UIButton(frame: CGRect(x: 10, y: pageView.frame.size.height-view.safeAreaInsets.bottom-50, width: pageView.frame.size.width-20, height: 50))
-            button.setTitleColor(.black, for: .normal)
+            button.setTitleColor(.white, for: .normal)
             button.backgroundColor = .red
             button.setTitle(x != (numberOfPages-1) ? "Next" : "Let's Go!", for: .normal)
             button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
