@@ -6,15 +6,18 @@ import UIKit
 private let reuseIdentifier = "SimulationGridCell"
 
 class GridView: UIView, UIGestureRecognizerDelegate {
+    
     // MARK: - Properties
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, Cell>
-    typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, Cell>
-    private var dataSource: DataSource!
-    private var snapshot = DataSourceSnapshot()
     
     var timer: Timer?
-    var generationCount = 0 // starts at zero
     var lastSelectedCell = IndexPath()
+    var delegate: GridViewDelegate?
+    
+    var generationCount = 0 { // starts at zero
+        didSet {
+            delegate?.updateTitle(with: generationCount)
+        }
+    }
     
     let columnCount: CGFloat = 19 // MVP wants 25, but that is too small for fingers in iOS - this breaks at 20
     lazy var rowCount: CGFloat = { (frame.height / cellSize.height).rounded(.awayFromZero) }() // round up to avoid gap at bottom of screen
@@ -146,20 +149,13 @@ class GridView: UIView, UIGestureRecognizerDelegate {
                 cell.backgroundColor = .white
             }
         }
+        generationCount += 1 // update generation count
     }
     
-    private func configureCollectionViewDataSource() {
-        dataSource = DataSource(collectionView: grid, cellProvider: { (collectionView, indexPath, cell) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! GridCell
-            cell.backgroundColor = cell.isAlive == true ? .black : .white
-            return cell
-        })
-    }
-    
-    private func applySnapshot(cells: [Cell]) {
-        snapshot = DataSourceSnapshot()
-    }
-    
+}
+
+protocol GridViewDelegate {
+    func updateTitle(with generationCount: Int)
 }
 
 extension GridView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

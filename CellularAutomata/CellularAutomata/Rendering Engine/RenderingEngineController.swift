@@ -50,6 +50,7 @@ class RenderingEngineController: UIViewController {
         navigationController?.navigationBar.tintColor = .red
         navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
         // nav bar buttons
         navigationItem.rightBarButtonItem = menuBarButton
         navigationItem.backBarButtonItem = backBarButton
@@ -80,6 +81,13 @@ class RenderingEngineController: UIViewController {
         // play button
         hStackViewTop.addArrangedSubview(goButton)
         goButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        // delegates
+        gridView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if UserDefaults.standard.bool(forKey: .showGenerationKey) == false { title = ""; navigationController?.navigationBar.backgroundColor = nil } // hide generation label
+        else { updateTitle(with: gridView.generationCount) } // show generation label
     }
     
     // MARK: - Handlers
@@ -97,6 +105,7 @@ class RenderingEngineController: UIViewController {
         case "Reset.":
             AudioPlayer.shared.playSound("reset")
             gridView.timer?.invalidate()
+            gridView.generationCount = 0
             gridView.grid.reloadData()
             goButton.setTitle("Go!", for: .normal)
         case "Go!":
@@ -248,8 +257,13 @@ extension RenderingEngineController: MenuControllerDelegate {
         goButton.setTitle("Go!", for: .normal)
     }
     
-    func renderStandardPreset(for selection: String) {
-        
+}
+
+extension RenderingEngineController: GridViewDelegate {
+    func updateTitle(with generationCount: Int) {
+        guard UserDefaults.standard.bool(forKey: .showGenerationKey) == true else { return }
+        title = "Generation \(gridView.generationCount)"
+        navigationController?.navigationBar.backgroundColor = .systemBackground
     }
     
 }

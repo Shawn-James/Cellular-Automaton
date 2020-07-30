@@ -10,13 +10,16 @@ class MenuTableViewCell: UITableViewCell {
         didSet {
             guard let sectionType = sectionType else { return }
             textLabel?.text = sectionType.description
+            
             switchControl.isHidden = !sectionType.containsSwitch
+            if let setting = sectionType as? AppSettingsOptions {
+                switchControl.isOn = UserDefaults.standard.bool(forKey: setting.userDefaultsKey)
+            }
         }
     }
     
     lazy var switchControl: UISwitch = {
         let switchControl = UISwitch()
-        switchControl.isOn = true
         switchControl.onTintColor = .red
         switchControl.translatesAutoresizingMaskIntoConstraints = false
         switchControl.addTarget(self, action: #selector(handleSwitchToggle), for: .valueChanged)
@@ -27,7 +30,6 @@ class MenuTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         addSubview(switchControl)
         switchControl.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         switchControl.rightAnchor.constraint(equalTo: rightAnchor, constant: -12).isActive = true
@@ -40,10 +42,12 @@ class MenuTableViewCell: UITableViewCell {
     // MARK: - Handlers
     
     @objc private func handleSwitchToggle(sender: UISwitch) {
+        guard let setting = sectionType as? AppSettingsOptions else { return }
+        
         if sender.isOn {
-            print("Turned on")
-        } else {
-            print("Turned off")
+            UserDefaults.standard.set(true, forKey: setting.userDefaultsKey)
+        } else { // .isOf
+            UserDefaults.standard.set(false, forKey: setting.userDefaultsKey)
         }
     }
 

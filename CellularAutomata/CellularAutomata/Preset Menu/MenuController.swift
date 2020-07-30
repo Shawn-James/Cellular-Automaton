@@ -140,6 +140,7 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case .user: return fetchedResultsController.fetchedObjects?.count ?? 0
         case .standard: return StandardPresetOptions.allCases.count
+        case .appSettings: return AppSettingsOptions.allCases.count
         }
     }
         
@@ -154,6 +155,9 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
             cell.sectionType = setting
         case .standard:
             let setting = StandardPresetOptions(rawValue: indexPath.row)
+            cell.sectionType = setting
+        case .appSettings:
+            let setting = AppSettingsOptions(rawValue: indexPath.row)
             cell.sectionType = setting
         }
         
@@ -171,9 +175,9 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
             case .standard:
                 let selection = StandardPresetOptions(rawValue: indexPath.row)!
                 delegate?.handleStandardPresetSelection(selection)
+            case .appSettings: break
             }
         }
-        
     }
     
     private func exitMenu(completion: () -> ()) {
