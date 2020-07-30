@@ -262,9 +262,14 @@ extension RenderingEngineController: MenuControllerDelegate {
     }
     
     func handleAppSettingSelection(_ selection: AppSettingsOptions) {
-        let onboardingViewController = OnboardingController()
-        onboardingViewController.modalPresentationStyle = .fullScreen
-        present(onboardingViewController, animated: true) { }
+        switch selection {
+        case .showGenerationLabel:
+            break
+        case .help:
+            let onboardingViewController = OnboardingController()
+            onboardingViewController.modalPresentationStyle = .fullScreen
+            present(onboardingViewController, animated: true) { }
+        }
     }
     
     // MARK: - Helpers
