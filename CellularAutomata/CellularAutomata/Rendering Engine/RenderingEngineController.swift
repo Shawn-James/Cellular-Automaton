@@ -271,6 +271,7 @@ extension RenderingEngineController: MenuControllerDelegate {
     
     private func performReset() {
         gridView.timer?.invalidate()
+        gridView.generationCount = 0
         gridView.grid.reloadData()
         goButton.setTitle("Go!", for: .normal)
     }
