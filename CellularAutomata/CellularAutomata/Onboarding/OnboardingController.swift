@@ -35,24 +35,7 @@ class OnboardingController: UIViewController {
         super.viewDidLayoutSubviews()
         view.addSubview(containerView)
         containerView.addSubview(onboardingScrollView)
-        setupAllPages()
-    }
-    
-    // MARK: - Handlers
-    
-    @objc func didTapButton(_ button: UIButton) {
-        guard button.tag < numberOfPages else {
-            self.dismiss(animated: true) {
-                UserDefaults.standard.set(true, forKey: .notNewUser)
-            }
-            return
-        }
-        onboardingScrollView.setContentOffset(CGPoint(x: containerView.frame.size.width*CGFloat(button.tag), y: 0), animated: true)
-    }
-    
-    // MARK: - Helper Methods
-    
-    private func setupAllPages() {
+        //      setup all pages
         for x in 0..<numberOfPages {
             // page
             let pageView = UIView(frame: CGRect(x: CGFloat(x) * containerView.frame.size.width, y: 0, width: containerView.frame.size.width, height: containerView.frame.size.height))
@@ -74,11 +57,26 @@ class OnboardingController: UIViewController {
         }
     }
     
+    // MARK: - Handlers
+    
+    @objc func didTapButton(_ button: UIButton) {
+        guard button.tag < numberOfPages else {
+            self.dismiss(animated: true) {
+                UserDefaults.standard.set(true, forKey: .notNewUser)
+            }
+            return
+        }
+        onboardingScrollView.setContentOffset(CGPoint(x: containerView.frame.size.width*CGFloat(button.tag), y: 0), animated: true)
+    }
+    
+    // MARK: - Helper Methods
+    
 }
 
 // MARK: - Live Previews
 
 #if DEBUG
+
 import SwiftUI
 
 struct OnboardingControllerPreviews: PreviewProvider {
@@ -90,3 +88,4 @@ struct OnboardingControllerPreviews: PreviewProvider {
 }
 
 #endif
+
