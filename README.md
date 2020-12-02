@@ -4,4 +4,6 @@ Interactive rendering engine for the 1970's computer classic, "The Game of Life"
 
 ![](CellularAutomaton.png)
 
+<img src="example.gif" height="600"/>
+
 Additional sound effects from https://www.zapsplat.com
